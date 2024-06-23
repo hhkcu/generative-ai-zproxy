@@ -22,6 +22,8 @@ import {
   GoogleGenerativeAIRequestInputError,
 } from "../errors";
 
+import { requestRaw as zproxyRequest } from "./zproxy";
+
 export const DEFAULT_BASE_URL = "https://generativelanguage.googleapis.com";
 
 export const DEFAULT_API_VERSION = "v1beta";
@@ -158,7 +160,7 @@ export async function makeRequest(
 ): Promise<Response> {
   let response;
   try {
-    response = await fetchFn(url, fetchOptions);
+    response = await zproxyRequest(url, fetchOptions.method, Object.fromEntries(new Headers(fetchOptions.headers).entries()), fetchOptions.body, "text");
   } catch (e) {
     handleResponseError(e, url);
   }

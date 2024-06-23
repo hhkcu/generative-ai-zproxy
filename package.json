@@ -51,5 +51,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
